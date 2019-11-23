@@ -1,0 +1,3 @@
+﻿  UDPServer17.cpp
+F:\Systemowe\Downloads\dalKonrada\UDPServer17\UDPServer17\UDPServer17.cpp(36,7): warning C4101: "recvbuf": lokalna zmienna, do której nie istnieje odwołanie
+  UDPServer17.vcxproj -> F:\Systemowe\Downloads\dalKonrada\UDPServer17\Debug\UDPServer17.exe

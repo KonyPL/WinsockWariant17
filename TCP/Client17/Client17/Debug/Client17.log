@@ -1,0 +1,4 @@
+﻿  Client17.cpp
+F:\Systemowe\Downloads\dalKonrada\Client17\Client17\Client17.cpp(94,22): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+F:\Systemowe\Downloads\dalKonrada\Client17\Client17\Client17.cpp(33,7): warning C4101: "recvbuf": lokalna zmienna, do której nie istnieje odwołanie
+  Client17.vcxproj -> F:\Systemowe\Downloads\dalKonrada\Client17\Debug\Client17.exe

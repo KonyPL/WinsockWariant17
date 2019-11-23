@@ -1,0 +1,4 @@
+﻿  UDPClient17.cpp
+F:\Systemowe\Downloads\dalKonrada\UDPClient17\UDPClient17\UDPClient17.cpp(109,22): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+F:\Systemowe\Downloads\dalKonrada\UDPClient17\UDPClient17\UDPClient17.cpp(48,7): warning C4101: "recvbuf": lokalna zmienna, do której nie istnieje odwołanie
+  UDPClient17.vcxproj -> F:\Systemowe\Downloads\dalKonrada\UDPClient17\Debug\UDPClient17.exe

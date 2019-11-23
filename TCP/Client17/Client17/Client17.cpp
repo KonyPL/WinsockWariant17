@@ -10,6 +10,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
 // Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib
 #pragma comment (lib, "Ws2_32.lib")
@@ -21,13 +22,13 @@
 #define DEFAULT_PORT "27015"
 
 
-int __cdecl main(int argc, char **argv)
+int __cdecl main(int argc, char** argv)
 {
 
 	WSADATA wsaData;
 	SOCKET ConnectSocket = INVALID_SOCKET;
-	struct addrinfo *result = NULL,
-		*ptr = NULL,
+	struct addrinfo* result = NULL,
+		* ptr = NULL,
 		hints;
 
 	char recvbuf[DEFAULT_BUFLEN];
@@ -52,13 +53,32 @@ int __cdecl main(int argc, char **argv)
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_protocol = IPPROTO_TCP;
 
-	// Resolve the server address and port
-	iResult = getaddrinfo("127.0.0.1", DEFAULT_PORT, &hints, &result);
-	if (iResult != 0) {
-		printf("getaddrinfo failed with error: %d\n", iResult);
-		WSACleanup();
-		return 1;
-	}
+	char ADDR[16], PORT[6];
+	std::string addr, port;
+	//Get Server address and Port
+	do {
+		std::cout << "Type the server address (default 127.0.0.1 - press Enter): ";
+		std::getline(std::cin, addr);
+		if (addr == "") addr = "127.0.0.1";
+
+		addr.copy(ADDR, (addr.size() + 1));
+		ADDR[addr.size()] = 0;
+
+		std::cout << "Type the server port (default: 27015 - press Enter): ";
+		std::getline(std::cin, port);
+		if (port == "") port = DEFAULT_PORT;
+
+		port.copy(PORT, (port.size() + 1));
+		PORT[port.size()] = 0;
+
+		// Resolve the server address and port
+		iResult = getaddrinfo(ADDR, PORT, &hints, &result);
+		if (iResult != 0) {
+			printf("getaddrinfo failed with error: %d\n", iResult);
+			//WSACleanup();
+			//return 1;
+		}
+	} while (iResult != 0);
 
 	// Attempt to connect to an address until one succeeds
 	for (ptr = result; ptr != NULL; ptr = ptr->ai_next) {
@@ -96,7 +116,7 @@ int __cdecl main(int argc, char **argv)
 	char sendBuff[4] = { 0 };
 
 	std::memcpy(sendBuff, &random_variable, sizeof random_variable); // Changes integer value into byte array
-	
+
 	// Send an initial buffer
 	iResult = send(ConnectSocket, (char*)sendBuff, sizeof(sendBuff), 0);
 	if (iResult == SOCKET_ERROR) {
